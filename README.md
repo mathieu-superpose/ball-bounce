@@ -7,3 +7,4 @@ an animated bouncing ball component
 - Bundler: Vite
 - JS Library: React
 - 3d render: R3F
+- R3F helpers: Drei
