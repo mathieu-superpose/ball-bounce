@@ -8,7 +8,13 @@ function Experience() {
   return (
     <div className="experience">
       <div className="canvas-container">
-        <Canvas>
+        <Canvas
+          shadows
+          camera={{
+            position: [0, 5, 20],
+            fov: 50,
+          }}
+        >
           <Scene />
         </Canvas>
       </div>

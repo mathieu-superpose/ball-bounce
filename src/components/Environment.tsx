@@ -1,8 +1,16 @@
-function Environment() {
+import * as THREE from "three"
+
+function Environment({ lightPosition }: { lightPosition: THREE.Vector3 }) {
   return (
     <>
       <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
+      <directionalLight
+        position={lightPosition}
+        intensity={1}
+        castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+      />
     </>
   )
 }
