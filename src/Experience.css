@@ -1,3 +1,7 @@
 .experience {
   min-height: 100vh;
 }
+
+.canvas-container {
+  height: 100vh;
+}
