@@ -8,3 +8,4 @@ an animated bouncing ball component
 - JS Library: React
 - 3d render: R3F
 - R3F helpers: Drei
+- GLSL import: Vite GLSL
