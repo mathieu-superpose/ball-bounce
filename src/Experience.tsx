@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber"
 import "./Experience.css"
 
 import Scene from "./Scene"
+import UI from "./components/ui"
 
 function Experience() {
   return (
@@ -18,6 +19,8 @@ function Experience() {
           <Scene />
         </Canvas>
       </div>
+
+      <UI />
     </div>
   )
 }
