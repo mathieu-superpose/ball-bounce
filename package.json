@@ -4,7 +4,7 @@
   "description": "An animated bouncing ball using React Three Fiber",
   "author": "Mathieu JOLY",
   "version": "0.0.0",
-  "homepage": "https://mathieu-superpose.github.io/ball-bounce/",
+  "homepage": "https://mathieu-superpose.github.io/ball-bounce",
   "type": "module",
   "scripts": {
     "dev": "vite",
