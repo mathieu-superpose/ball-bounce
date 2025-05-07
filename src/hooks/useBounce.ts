@@ -1,4 +1,4 @@
-import { useFrame } from "@react-three/fiber"
+import { useFrame, useThree } from "@react-three/fiber"
 import { RefObject, useMemo, useRef } from "react"
 import * as THREE from "three"
 
@@ -10,6 +10,7 @@ const JUMP_VELOCITY = 20
 const MAX_FALL_VELOCITY = -20
 const RADIUS = 1
 const TIMESCALE = 1
+const TRANSITION_SPEED = 5
 
 // type TStep = "weightless" | "fall" | "compress" | "release" | "jump"
 
@@ -28,6 +29,8 @@ export function useBounce(ref: RefObject<THREE.Mesh | null>) {
 
   const raycaster = useMemo(() => new THREE.Raycaster(), [])
   const rayDirection = useMemo(() => new THREE.Vector3(0, -1, 0), [])
+
+  const { camera } = useThree()
 
   useFrame((_state, delta) => {
     if (!ref?.current) {
@@ -64,24 +67,30 @@ export function useBounce(ref: RefObject<THREE.Mesh | null>) {
     // update the position
     ball.position.y += velocity.current * dt
 
-    if (Math.abs(velocity.current) < 1) {
+    // replace the ball if it falls below the camera
+    if (ball.position.y < camera.position.y - 10) {
+      ball.position.y = camera.position.y + 10
+    }
+
+    if (Math.abs(velocity.current) < 2.5) {
       if (currentStep !== "weightless") {
         setStep("weightless")
         targetScale.set(1, 1, 1)
       }
-    } else if (minDistance <= RADIUS * 1.5) {
+    } else if (minDistance <= RADIUS * 2) {
       if (currentStep !== "compress") {
         setStep("compress")
-        targetScale.set(1.4, 0.3, 1.4)
+        targetScale.set(1.3, 0.7, 1.3)
       }
-    } else if (velocity.current < -0.2) {
+    } else if (velocity.current < -2.5) {
       if (currentStep !== "fall") {
         setStep("fall")
+        targetScale.set(0.9, 1.1, 0.9)
       }
-    } else if (velocity.current > 13) {
+    } else if (velocity.current > 12) {
       if (currentStep !== "release") {
         setStep("release")
-        targetScale.set(0.6, 1.8, 0.6)
+        targetScale.set(0.7, 1.2, 0.7)
       }
     } else {
       if (currentStep !== "jump") {
@@ -91,6 +100,6 @@ export function useBounce(ref: RefObject<THREE.Mesh | null>) {
     }
 
     // update scale
-    ball.scale.lerp(targetScale, dt * 3)
+    ball.scale.lerp(targetScale, dt * TRANSITION_SPEED)
   })
 }
