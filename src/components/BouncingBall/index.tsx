@@ -28,7 +28,7 @@ function BouncingBall({ lightPosition }: { lightPosition: THREE.Vector3 }) {
   useBounce(ballRef)
 
   return (
-    <mesh material={material} castShadow ref={ballRef}>
+    <mesh material={material} castShadow ref={ballRef} position={[0, 4, 0]}>
       <sphereGeometry args={[RADIUS, 32, 32]} />
     </mesh>
   )
