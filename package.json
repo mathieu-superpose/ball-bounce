@@ -1,6 +1,6 @@
 {
   "name": "ball-bounce",
-  "private": true,
+  "private": false,
   "description": "An animated bouncing ball using React Three Fiber",
   "author": "Mathieu JOLY",
   "version": "0.0.0",
