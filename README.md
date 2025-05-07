@@ -2,7 +2,9 @@
 
 an animated bouncing ball component
 
-# Technology
+## [TRY IT](https://mathieu-superpose.github.io/ball-bounce/)
+
+## Technology
 
 - Bundler: Vite
 - JS Library: React
@@ -10,3 +12,4 @@ an animated bouncing ball component
 - R3F helpers: Drei
 - GLSL import: Vite GLSL
 - State management: Zustand
+- Deployment: Github Pages
