@@ -5,10 +5,10 @@ import { shaderMaterial } from "@react-three/drei"
 
 import { useBounce } from "../../hooks/useBounce"
 
-import fragement from "./shader/fragment.glsl"
+import fragment from "./shader/fragment.glsl"
 import vertex from "./shader/vertex.glsl"
 
-const BouncingBallShaderMaterial = shaderMaterial({}, vertex, fragement)
+const BouncingBallShaderMaterial = shaderMaterial({}, vertex, fragment)
 
 extend({ BouncingBallShaderMaterial })
 

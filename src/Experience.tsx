@@ -15,6 +15,7 @@ function Experience() {
             position: [0, 5, 20],
             fov: 50,
           }}
+          dpr={[0.5, 1]}
         >
           <Scene />
         </Canvas>
