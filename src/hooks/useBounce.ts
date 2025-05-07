@@ -7,7 +7,7 @@ import { useBallStore } from "../stores/ball"
 const GRAVITY = -9.8 * 2
 const JUMP_VELOCITY = 20
 const RADIUS = 1
-const TIMESCALE = 1 / 4
+const TIMESCALE = 1
 
 // type TStep = "weightless" | "fall" | "compress" | "release" | "jump"
 
@@ -37,15 +37,32 @@ export function useBounce(ref: RefObject<THREE.Mesh | null>) {
     ball.position.y += velocity.current * dt
 
     if (Math.abs(velocity.current) < 1) {
-      setStep("weightless")
+      if (currentStep !== "weightless") {
+        setStep("weightless")
+        targetScale.set(1, 1, 1)
+      }
     } else if (ball.position.y <= 0 + RADIUS) {
-      setStep("compress")
+      if (currentStep !== "compress") {
+        setStep("compress")
+        targetScale.set(1.4, 0.3, 1.4)
+      }
     } else if (velocity.current < -0.2) {
-      setStep("fall")
-    } else if (velocity.current > 15) {
-      setStep("release")
+      if (currentStep !== "fall") {
+        setStep("fall")
+      }
+    } else if (velocity.current > 13) {
+      if (currentStep !== "release") {
+        setStep("release")
+        targetScale.set(0.6, 1.8, 0.6)
+      }
     } else {
-      setStep("jump")
+      if (currentStep !== "jump") {
+        setStep("jump")
+        targetScale.set(1, 1, 1)
+      }
     }
+
+    // update scale
+    ball.scale.lerp(targetScale, dt * 3)
   })
 }
