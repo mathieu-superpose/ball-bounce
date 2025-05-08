@@ -12,8 +12,6 @@ const RADIUS = 1
 const TIMESCALE = 1
 const TRANSITION_SPEED = 5
 
-// type TStep = "weightless" | "fall" | "compress" | "release" | "jump"
-
 export function useBounce(ref: RefObject<THREE.Mesh | null>) {
   const targetScale = useMemo(() => new THREE.Vector3(1, 1, 1), [])
 
